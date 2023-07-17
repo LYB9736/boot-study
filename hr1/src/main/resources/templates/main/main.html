@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .X{
+            color : red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input  type = " text" placeholder="새 지역">
+        <button class = "plus">추가</button>
+    </div>
+    <div>
+            <ul>
+                <li th:each ="dto : ${resMainDTOList}">
+                    <span th:text =  "${dto.regionsName}">1. 유럽</span>
+                    <span class = "X">X</span>
+                </li>
+            </ul>
+    </div>
+</body>
+</html>
