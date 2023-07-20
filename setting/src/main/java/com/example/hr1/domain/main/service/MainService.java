@@ -31,7 +31,6 @@ public class MainService {
         .regionName(reqInsertMainDTO.getRegionsName())
         .build();
 
-
         regionsRepository.save(regionsEntity);
     }
 

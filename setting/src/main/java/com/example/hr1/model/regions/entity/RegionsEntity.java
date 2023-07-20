@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "regions")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Builder
+@Getter
 // 엔티티에서 setter는 꼭 필요할 때만 직접 만드는 것을 추천
 // toString도 직접 만드는 것을 추천
 public class RegionsEntity {

@@ -22,8 +22,8 @@ public class EmpController {
     @GetMapping("/emp")
     public ModelAndView getEmpTablePage(@RequestParam(required = false) String firstName){
 
-        // firstName이 null이면 전체리스트 / 값이 있으면 조건 검색 리스트 
-        
+        // firstName이 null이면 전체리스트 / 값이 있으면 조건 검색 리스트
+
         System.out.println(firstName);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -35,10 +35,8 @@ public class EmpController {
 
     @GetMapping("/emp/{employeeId}")
     public ModelAndView getEmpDetailPage(@PathVariable Integer employeeId){
-
         System.out.println(employeeId);
         ModelAndView modelAndView = new ModelAndView();
-
         EmpDetailDTO empDetailDTO = empService.getEmpDetailData(employeeId);
         modelAndView.addObject("empDetailDTO", empDetailDTO);
         modelAndView.setViewName("emp/emp-detail");
