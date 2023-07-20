@@ -20,8 +20,3 @@ spring:
     multipart:
       max-request-size: 10MB
       max-file-size: 10MB
-
-
-
-# 
-# property와 yml은 같다. 회사가면 둘 중 하나를 쓰므로 둘 다쓸줄 알아야한다.

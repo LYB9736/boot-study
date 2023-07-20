@@ -15,13 +15,11 @@ import lombok.ToString;
 @ToString
 public class ResMainDTO {
 
-
-
     private Integer regionsId;
     private String regionsName;
-
+    
     public static ResMainDTO fromEntity(RegionsEntity regionsEntity){
         return new ResMainDTO(regionsEntity.getRegionId(), regionsEntity.getRegionName());
     }
-    
+
 }

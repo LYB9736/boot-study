@@ -14,18 +14,16 @@ import com.example.hr1.domain.main.service.MainService;
 public class MainController {
 
     @Autowired
-    private MainService MainService;
+    private MainService mainService;
 
     @GetMapping("/")
     // Mapping을 기반으로 함수를 실행 시키기 때문에
-    // Controller의 함수 이름은 중요하지 않다.
+    // controller의 함수 이름은 중요하지 않다
     public ModelAndView mainPage(){
         ModelAndView modelAndView = new ModelAndView();
-        List<ResMainDTO> resMainDTOList = MainService.getMainPageData();
-        // modelAndView.addObject("region", region());
-        modelAndView.addObject("resMainDTOList", resMainDTOList) ;
+        List<ResMainDTO> resMainDTOList = mainService.getMainPageData();
+        modelAndView.addObject("resMainDTOList", resMainDTOList);
         modelAndView.setViewName("main/main");
-
         return modelAndView;
     }
     

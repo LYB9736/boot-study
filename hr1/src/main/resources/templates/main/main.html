@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        .X{
-            color : red;
+        .x-button {
+            background-color: whitesmoke;
+            color: red;
+            font-weight: 600;
             cursor: pointer;
         }
     </style>
+    <title>Document</title>
 </head>
 <body>
     <div>
-        <input  type = " text" placeholder="새 지역">
-        <button class = "plus">추가</button>
+        <input type="text" placeholder="새 지역">
+        <button>추가</button>
     </div>
     <div>
-            <ul>
-                <li th:each ="dto : ${resMainDTOList}">
-                    <span th:text =  "${dto.regionsName}">1. 유럽</span>
-                    <span class = "X">X</span>
-                </li>
-            </ul>
+        <ul>
+            <li th:each="dto : ${resMainDTOList}">
+                <span th:text="${dto.regionsName}"></span>
+                <span class="x-button">X</span>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
