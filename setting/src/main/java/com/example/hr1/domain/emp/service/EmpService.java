@@ -25,39 +25,20 @@ public class EmpService {
         } else {
             return EmpTableDTO.fromEntityList(employeesRepository.findByFirstNameContainingIgnoreCase(firstName));
         }
-
     }
 
-    public List<EmpTableDTO> getEmpTableData() {
-        // List<EmployeesEntity> employeesEntityList = employeesRepository.findAll();
 
-        // List<EmpTableDTO> empTableDTOList = new ArrayList<>();
-
-        // for (int i = 0; i < employeesEntityList.size(); i++) {
-        //     EmployeesEntity employeesEntity = employeesEntityList.get(i);
-
-        //     EmpTableDTO empTableDTO = EmpTableDTO.builder()
-        //             .employeeId(employeesEntity.getEmployeeId())
-        //             .firstName(employeesEntity.getFirstName())
-        //             .build();
-
-        //     empTableDTOList.add(empTableDTO);
-        // }
-
-        // return empTableDTOList;
-
+    public List<EmpTableDTO> getEmpTableData(){
         return EmpTableDTO.fromEntityList(employeesRepository.findAll());
     }
 
-
-    public EmpDetailDTO getEmpDetailData(Integer employeeId){
+    public EmpDetailDTO getEmpDetailData(Integer employeeId) {
         Optional<EmployeesEntity> employeesEntityOptional = employeesRepository.findByEmployeeId(employeeId);
-
         if(!employeesEntityOptional.isPresent()){
-            throw new RuntimeException("잘못된 요청입니다.");
+            throw new RuntimeException("잘못된 요청임.");
         }
-
+        // 함수의 함수 // employeesEntityOptional.get()를 fromEntity가 EmpDetailDTO에서 받아옴.
         return EmpDetailDTO.fromEntity(employeesEntityOptional.get());
     }
-
+    
 }

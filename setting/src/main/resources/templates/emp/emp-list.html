@@ -38,17 +38,20 @@
     </div>
     <script>
 
-        // 페이지 이동
+        // 페이지 이동 버튼
         const goDetail = (employeeId) => {
-            location.href = "/emp/" + employeeId;
+            // 항상 윈도우는 생략 가능
+            window.location.href = "/emp/" + employeeId;
         }
 
+        // 검색
         document.querySelector("#searchButton").addEventListener("click", () => {
 
             // alert(document.querySelector("#searchValue").value);
 
-            location.href = "/emp?firstName=" + document.querySelector("#searchValue").value;
-
+            // 붙여서 써도 됨. (구분하기 위해서 보여주기 식으로 이렇게 작성함.)
+            // "/emp?firstName=" 이거 가능.
+            location.href = "/emp" + "?" + "firstName=" + document.querySelector("#searchValue").value;
         });
 
 
