@@ -28,7 +28,7 @@ public class ResSecondDTO {
         return ResSecondDTO.builder()
         .title(postEntity.getTitle())
         .content(postEntity.getContent())
-        .userIdx(postEntity.getUserIdx())
+        .userIdx(postEntity.getUserEntity().getIdx())
         .build();
     }
 }
