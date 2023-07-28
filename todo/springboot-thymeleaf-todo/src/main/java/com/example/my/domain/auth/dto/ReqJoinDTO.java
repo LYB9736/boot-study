@@ -18,7 +18,7 @@ public class ReqJoinDTO {
     @Valid
     @NotNull(message = "유저 정보를 입력해주세요.")
     private User user;
-
+    
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
@@ -30,7 +30,6 @@ public class ReqJoinDTO {
         private String id;
 
         @NotBlank(message = "비밀번호를 입력해주세요.")
-        @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,16}$", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
         private String password;
     }
 

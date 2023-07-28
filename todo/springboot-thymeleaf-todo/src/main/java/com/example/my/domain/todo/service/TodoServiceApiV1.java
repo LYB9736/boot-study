@@ -1,23 +1,16 @@
 package com.example.my.domain.todo.service;
 
-import com.example.my.common.dto.LoginUserDTO;
-import com.example.my.common.dto.ResponseDTO;
-import com.example.my.domain.todo.dto.ReqTodoTableInsertDTO;
-import com.example.my.domain.todo.dto.ReqTodoTableUpdateDoneYnDTO;
-import com.example.my.domain.todo.dto.ResTodoTableDTO;
-import com.example.my.model.todo.entity.TodoEntity;
-import com.example.my.model.todo.repository.TodoRepository;
-import com.example.my.model.user.entity.UserEntity;
-import com.example.my.model.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import com.example.my.common.dto.LoginUserDTO;
+import com.example.my.domain.todo.dto.ReqTodoTableInsertDTO;
+import com.example.my.domain.todo.dto.ReqTodoTableUpdateDoneYnDTO;
+import com.example.my.model.todo.repository.TodoRepository;
+import com.example.my.model.user.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +19,7 @@ public class TodoServiceApiV1 {
 
     private final TodoRepository todoRepository;
     private final UserRepository userRepository;
+
 
     public ResponseEntity<?> getTodoTableData(LoginUserDTO loginUserDTO) {
         // TODO : 리파지토리에서 유저 기본키로 삭제되지 않은 할 일 목록 찾기

@@ -111,7 +111,7 @@
       const dto = {
         user: {
           id: document.getElementById("id").value,
-          password: document.getElementById("password").value,
+          password: document.getElementById("password").value
         },
       };
 
@@ -126,12 +126,15 @@
         .then((result) => {
 
           alert(result.message);
-
+          
           if(result.code === 0){
             // 회원가입 성공
             location.replace("/auth/login");
           }
+
         })
+
+
 
     };
 
@@ -169,6 +172,5 @@
 
       return true;
     };
-
   </script>
 </html>

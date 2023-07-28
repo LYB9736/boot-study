@@ -28,7 +28,7 @@ public class TodoEntity {
     private String content;
 
     @Column(name = "done_yn" , nullable = false)
-    private Character doneYn; // 할일을 했는지 안했는지 체크
+    private Character doneYn;
 
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;
@@ -38,7 +38,6 @@ public class TodoEntity {
 
     @Column(name = "delete_date")
     private LocalDateTime deleteDate;
-    
 
     public void setDoneYn(Character doneYn) {
         this.doneYn = doneYn;

@@ -7,11 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
-    List<TodoEntity> findByDeleteDateIsNull(); // 삭제가 안된 것만 가져오기
+    List<TodoEntity> findByDeleteDateIsNull();
 
-    // SELECT * FROM todo
-    // where user_idx = ?
-    // and delete_date is null;
     List<TodoEntity> findByUserEntity_IdxAndDeleteDateIsNull(Long userIdx);
     List<TodoEntity> findByUserEntity_IdxAndDeleteDateIsNullOrderByIdxDesc(Long userIdx);
 

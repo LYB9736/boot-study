@@ -12,8 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @Getter
+@ToString
 public class LoginUserDTO {
 
     private User user;
@@ -27,8 +27,8 @@ public class LoginUserDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    @ToString
     @Getter
+    @ToString
     public static class User {
         private Long idx;
         private String id;
