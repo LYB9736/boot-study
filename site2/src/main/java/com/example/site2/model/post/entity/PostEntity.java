@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "`post")
+@Table(name = "`post`")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -34,11 +34,11 @@ public class PostEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "user_idx", nullable = false)
-    private Long userIdx;
+    // @Column(name = "user_idx", nullable = false)
+    // private Long userIdx;
 
-    // @ManyToOne
-    // @JoinColumn(name = "user_idx", referencedColumnName = "idx")
-    // private UserEntity userEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_idx", referencedColumnName = "idx", nullable = false)
+    private UserEntity userEntity;
     
 }

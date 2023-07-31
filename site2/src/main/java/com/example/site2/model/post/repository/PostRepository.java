@@ -19,8 +19,8 @@ public interface PostRepository extends JpaRepository <PostEntity, Long>{
     // select * from post where content = ?
     List<PostEntity> findByContent(String content);
 
-    // select * from post where user_idx = ?
-    List<PostEntity> findByUserIdx(Long userIdx);
+    // // select * from post where user_idx = ?
+    // List<PostEntity> findByUserIdx(Long userIdx);
 
     // select *
     // from
