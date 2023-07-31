@@ -35,9 +35,10 @@ public class TodoControllerApiV1 {
             @RequestBody ReqTodoTableInsertDTO dto,
             HttpSession session
     ) {
-        // TODO : session에 dto가 없으면 BadRequest 처리
+        // session에 dto가 없으면 BadRequest 처리
+        ResponseEntity<?> todo = todoServiceApiV1.insertTodoTableData(dto, null);
         // TODO : 서비스에서 할 일 추가하기
-        return null;
+        return todo;
     }
 
     @PutMapping("/{todoIdx}")
