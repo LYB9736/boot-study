@@ -26,7 +26,7 @@ public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idx", nullable = false, unique = true)
-    private Long idx;
+    private Integer idx;
 
     @Column(name = "title", nullable = false)
     private String title;

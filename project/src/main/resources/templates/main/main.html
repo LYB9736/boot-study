@@ -34,29 +34,33 @@
         <nav>
           <!-- 메뉴 영역 -->
           <ul>
-            <li class="board"><a href="#">게시판 바로가기</a></li>
+            <li class="board"><a onclick = board()>게시판 바로가기</a></li>
           </ul>
         </nav>
       </section>
       <section class="recent-posts">
         <!-- 최근 포스트 목록을 보여주는 영역 -->
-        <h2>최근 포스트 목록</h2>
-        <div class="post">
-          <h3>최근 포스트 제목 1</h3>
-          <p>최근 포스트 내용 1...</p>
+        <div class="post" th:each="dto : ${resSecondDTOList}">
+          <h3 th:text="${dto.title}">최근 포스트 제목 1</h3>
+          <p th:text="${dto.content}">최근 포스트 내용 1...</p>
+          <p th:text="${dto.userIdx}">작성자</p>
         </div>
-        <div class="post">
-          <h3>최근 포스트 제목 2</h3>
+        <!-- <div class="post">
+          <h3 th:text="${dto.title}">최근 포스트 제목 2</h3>
           <p>최근 포스트 내용 2...</p>
         </div>
         <div class="post">
-          <h3>최근 포스트 제목 3</h3>
+          <h3 th:text="${dto.title}">최근 포스트 제목 3</h3>
           <p>최근 포스트 내용 3...</p>
         </div>
         <div class="post">
           <h3>최근 포스트 제목 4</h3>
           <p>최근 포스트 내용 4...</p>
         </div>
+        <div class="post">
+            <h3>최근 포스트 제목 5</h3>
+            <p>최근 포스트 내용 5...</p>
+        </div> -->
       </section>
     </main>
     <footer>
@@ -69,6 +73,7 @@
     const main = () => location.replace("/");
     const join = () => location.replace("/join");
     const login = ()  => location.replace("/login");
+    const board = () => location.replace("/board");
     
   </script>
 </html>

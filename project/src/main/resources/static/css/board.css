@@ -16,10 +16,18 @@ header h1 {
     margin: 0;
 }
 
-nav {
+main h2 {
+    text-align: center;
+}
+.board{
     background-color: #333;
     color: #fff;
-    padding: 5px;
+}
+
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
     text-align: center;
 }
 
@@ -67,4 +75,11 @@ footer {
 
 .login-signup a + a {
     margin-left: 10px;
+}
+.search-form{
+    text-align: center;
+}
+
+.search-form form input[type="text"] {
+    width: 300px; /* 원하는 크기로 조절 */
 }
