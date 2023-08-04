@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.project.common.ResponseDTO;
+import com.example.project.common.dto.ResponseDTO;
 import com.example.project.domain.main.dto.ResMainApiDTO;
 import com.example.project.model.user.entity.UserEntity;
 import com.example.project.model.user.repository.UserRepository;

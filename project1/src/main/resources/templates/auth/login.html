@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <!-- CSS와 JavaScript 파일 링크 등의 필요한 메타 정보들을 포함 -->
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
+    <header>
+      <!-- 로고, 메뉴, 로그인/회원가입 버튼 등의 네비게이션 영역 -->
+      <a onclick="main()"
+        ><img src="images/logo.jpg" alt="logo" width="200" height="100"
+      /></a>
+      <h1>떨어지는 것에는 날개가 없다.</h1>
+      <div class="login-signup">
+        <a onclick="join()">회원가입</a>
+        <a onclick="login()">로그인</a>
+      </div>
+    </header>
+    <main>
+      <form action="/login" method="post">
+        <div>
+          <label for="username">아이디:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">비밀번호:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div>
+          <input type="submit" onclick=main() value="로그인" />
+        </div>
+      </form>
+    </main>
+    <footer>
+      <!-- 페이지 하단에 위치하는 정보나 링크 등의 영역 -->
+      &copy; 2023 추락하는 롯데열차. All rights reserved.
+    </footer>
+    <!-- 필요한 JavaScript 파일을 로드 -->
+    <script>
+      const main = () => location.replace("/");
+      const join = () => location.replace("/join");
+      const login = () => location.replace("/login");
+
+    //   document.querySelector("#password").addEventListener("keyup", (event) => {
+    //     if (event.keyCode === 13) {
+    //       requestLogin();
+    //     }
+    //   });
+
+    //   const requestLogin = () => {
+    //     if (!validateFields()) {
+    //       return;
+    //     }
+
+    //     const dto = {
+    //       user: {
+    //         id: document.getElementById("id").value,
+    //         password: document.getElementById("password").value,
+    //       },
+    //     };
+
+    //     fetch("/api/v1/auth/login", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json;charset=utf-8",
+    //       },
+    //       body: JSON.stringify(dto),
+    //     })
+    //       .then((response) => response.json())
+    //       .then((result) => {
+    //         alert(result.message);
+    //         if (result.code === 0) {
+    //           location.replace("/");
+    //         }
+    //       });
+    //     // 아이디와 비밀번호 입력창이 비어있는지 검사하는 함수
+    //     const validateFields = () => {
+    //       // id속성으로 요소를 가져옴
+    //       const idElement = document.getElementById("id");
+    //       const pwElement = document.getElementById("password");
+
+    //       if (idElement.value === "") {
+    //         alert("아이디를 입력해주세요.");
+    //         idElement.focus();
+    //         return false;
+    //       }
+
+    //       if (pwElement.value === "") {
+    //         alert("비밀번호를 입력해주세요.");
+    //         pwElement.focus();
+    //         return false;
+    //       }
+
+    //       return true;
+    //     };
+    //   };
+    </script>
+  </body>
+</html>

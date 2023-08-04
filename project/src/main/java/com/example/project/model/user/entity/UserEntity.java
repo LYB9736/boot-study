@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "`user`")
 @Getter
+@Builder
 @Entity
 public class UserEntity {
 
@@ -32,6 +34,15 @@ public class UserEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    // @Column(name = "create_date" , nullable = false)
+    // private LocalDateTime createDate;
+
+    // @Column(name = "update_date")
+    // private LocalDateTime updateDate;
+
+    // @Column(name = "delete_date")
+    // private LocalDateTime deleteDate;
 
     @OneToMany(mappedBy =  "userEntity")
     private List<PostEntity> PostEntityList;

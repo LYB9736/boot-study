@@ -18,6 +18,7 @@ public class ResSecondDTO {
     private String title;
     private String content;
     private Integer userIdx;
+    // private String name;
 
     public static ResSecondDTO fromEntity(PostEntity postEntity){
 
@@ -25,6 +26,7 @@ public class ResSecondDTO {
         .title(postEntity.getTitle())
         .content(postEntity.getContent())
         .userIdx(postEntity.getUserEntity().getIdx())
+        // .name(postEntity.getName())
         .build();
     }
     

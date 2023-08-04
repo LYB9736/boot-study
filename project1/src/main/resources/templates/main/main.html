@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커뮤니티사이트 메인페이지</title>
+    <!-- CSS와 JavaScript 파일 링크 등의 필요한 메타 정보들을 포함 -->
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <header>
+      <!-- 로고, 메뉴, 로그인/회원가입 버튼 등의 네비게이션 영역 -->
+      <a onclick= main() 
+        ><img
+          src="images/logo.jpg"
+          alt="logo"
+          width="200"
+          height="100"
+      /></a>
+      <h1>떨어지는 것에는 날개가 없다.</h1>
+      <div class="login-signup">
+        <a onclick = join()>회원가입</a>
+        <a onclick = login()>로그인</a>
+      </div>
+    </header>
+    <main>
+      <!-- 주요 콘텐츠 영역 -->
+      <section class="featured-posts">
+        <!-- 주요 포스트들을 특정 방식으로 보여주는 영역 -->
+        <div class="post">
+          <h2>최근 경기 결과</h2>
+          <p>경기 데이터</p>
+        </div>
+        <nav>
+          <!-- 메뉴 영역 -->
+          <ul>
+            <li class="board"><a onclick = board()>게시판 바로가기</a></li>
+          </ul>
+        </nav>
+      </section>
+      <section class="recent-posts">
+        <!-- 최근 포스트 목록을 보여주는 영역 -->
+        <div class="post" th:each="dto : ${resSecondDTOList}">
+          <h3 th:text="${dto.title}">최근 포스트 제목 1</h3>
+          <p th:text="${dto.content}">최근 포스트 내용 1...</p>
+          <p th:text="${dto.userIdx}">작성자</p>
+        </div>
+        <!-- <div class="post">
+          <h3 th:text="${dto.title}">최근 포스트 제목 2</h3>
+          <p>최근 포스트 내용 2...</p>
+        </div>
+        <div class="post">
+          <h3 th:text="${dto.title}">최근 포스트 제목 3</h3>
+          <p>최근 포스트 내용 3...</p>
+        </div>
+        <div class="post">
+          <h3>최근 포스트 제목 4</h3>
+          <p>최근 포스트 내용 4...</p>
+        </div>
+        <div class="post">
+            <h3>최근 포스트 제목 5</h3>
+            <p>최근 포스트 내용 5...</p>
+        </div> -->
+      </section>
+    </main>
+    <footer>
+      <!-- 페이지 하단에 위치하는 정보나 링크 등의 영역 -->
+      &copy; 2023 추락하는 롯데열차. All rights reserved.
+    </footer>
+    <!-- 필요한 JavaScript 파일을 로드 -->
+  </body>
+  <script>
+    const main = () => location.replace("/");
+    const join = () => location.replace("/join");
+    const login = ()  => location.replace("/login");
+    const board = () => location.replace("/board");
+    
+  </script>
+</html>
