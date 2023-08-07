@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <!-- CSS와 JavaScript 파일 링크 등의 필요한 메타 정보들을 포함 -->
+    <link rel="stylesheet" href="css/auth.css">
+  </head>
+
+  <body>
+    <header>
+      <!-- 로고, 메뉴, 로그인/회원가입 버튼 등의 네비게이션 영역 -->
+      <a onclick= main()
+        ><img
+          src="images/logo.jpg"
+          alt="logo"
+          width="200"
+          height="100"
+      /></a>
+      <h1>떨어지는 것에는 날개가 없다.</h1>
+      <div class="login-signup">
+        <a onclick = join()>회원가입</a>
+        <a onclick = login()>로그인</a>
+      </div>
+    </header>
+    <main>
+      <form action="/login" method="post">
+        <div>
+          <label for="username">아이디:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">비밀번호:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div>
+          <label for="password">비밀번호 확인:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div>
+          <input type="submit" onclick = requestJoin() value="회원가입" />
+        </div>
+      </form>
+    </main>
+    <script>
+        const main = () => location.replace("/");
+        const join = () => location.replace("/join");
+        const login = ()  => location.replace("/login");
+
+        const requestJoin = () => {
+          if(!vaildateFields()){
+            return;
+          }
+          const dto = {
+            user:{
+              id: document.getElementById("id").value,
+              password: document.getElementById("password").value
+            },
+          };
+
+          fetch("/api/v1/auth/join", {
+            method : "POST",
+            headers : {
+              "Content-Type" : "application/json;charset=utf-8"
+            },
+            body : JSON.stringify(dto)
+          })
+            .then((response) => response.json())
+            .then((result) => {
+
+              alert(result.message);
+
+              if(result.code === 0){
+                location.replace("/auth/login");
+              }
+            })
+        };
+
+        const vaildateFields = () => {
+
+          const idElement = document.getElementById("id");
+          const pwElement = document.getElementById("password");
+          const pw2Element = document.getElementById("password2");
+
+          if(idElement.value === ""){
+            alert("아이디를 입력해주세요.");
+            idElement.focus();
+            return false;
+          }
+
+          if(pwElement.value === ""){
+            alert("비밀번호를 입력해주세요.");
+            pwElement.focus();
+            return false;
+          }
+
+          if(pw2Element.value === ""){
+            alert("비밀번호를 한번 더 입력해주세요.");
+            pw2Element.focus();
+            return false;
+          }
+
+          if(pwElement.value !== pw2Element.value){
+            alert("비밀번호가 일치하지 않습니다.");
+            pw2Element.focus();
+            return false;
+          }
+
+          return true;
+        };
+        
+      </script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `post`;
-DROP TABLE IF EXISTS `user`;
+-- DROP TABLE IF EXISTS `post`;
+-- DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
@@ -7,7 +7,7 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`idx`),
   UNIQUE KEY `user_un` (`id`)
-)
+);
 
 CREATE TABLE `post` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
@@ -17,4 +17,4 @@ CREATE TABLE `post` (
   PRIMARY KEY (`idx`),
   KEY `post_FK` (`user_idx`),
   CONSTRAINT `post_FK` FOREIGN KEY (`user_idx`) REFERENCES `user` (`idx`)
-)
+);
