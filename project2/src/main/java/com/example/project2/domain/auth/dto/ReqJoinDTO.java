@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class ReqJoinDTO {
 
     @Valid
-    @NotNull(message = "유저 정보를 입력해주세요.")
+    @NotNull(message = "아이디를 입력해주세요.")
     private User user;
 
     @NoArgsConstructor
@@ -26,7 +26,7 @@ public class ReqJoinDTO {
 
         @NotBlank(message = "아이디를 입력해주세요.")
         @Size(min = 4, message = "아이디는 4글자 이상 입력해주세요.")
-        private String id;
+        private String id;  
 
         @NotBlank(message = "비밀번호를 입력해주세요.")
         private String password;

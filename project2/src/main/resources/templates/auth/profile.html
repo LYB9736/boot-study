@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>커뮤니티사이트 메인페이지</title>
     <!-- CSS와 JavaScript 파일 링크 등의 필요한 메타 정보들을 포함 -->
-    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <header>
@@ -21,55 +21,11 @@
           <a id="logoutBtn" onclick="logout()" style="display: none;">로그아웃</a>
           <span id="loggedInMessage" style="display: none;"></span>
     </header>
-    <main>
-      <!-- 게시판 내용 표시 -->
-      <h2 class="board">자유 게시판</h2>
-      <section class="recent-posts">
-        <!-- 최근 포스트 목록을 보여주는 영역 -->
-        <div class="write-button">
-        <a href="/write">글쓰기</a>
-      </div>
-        <h2>최근 포스트 목록</h2>
-        <div class="post" th:each="dto : ${resSecondDTOList}">
-          <h3 th:text="${dto.title}">최근 포스트 제목 1</h3>
-          <p th:text="${dto.content}">최근 포스트 내용 1...</p>
-          <p th:text="${dto.userIdx}">작성자</p>
-        </div>
-        <!-- <div class="post">
-              <h3 th:text="${dto.title}">최근 포스트 제목 2</h3>
-              <p>최근 포스트 내용 2...</p>
-            </div>
-            <div class="post">
-              <h3 th:text="${dto.title}">최근 포스트 제목 3</h3>
-              <p>최근 포스트 내용 3...</p>
-            </div>
-            <div class="post">
-              <h3>최근 포스트 제목 4</h3>
-              <p>최근 포스트 내용 4...</p>
-            </div>
-            <div class="post">
-                <h3>최근 포스트 제목 5</h3>
-                <p>최근 포스트 내용 5...</p>
-            </div> -->
-      </section>
-      
-      <div class="search-form">
-        <h2>게시글 검색</h2>
-        <form action="/search" method="get">
-          <input type="text" name="query" placeholder="검색어를 입력하세요" />
-          <button type="submit">검색</button>
-        </form>
-      </div>
-    </main>
-    <footer>&copy; 2023 추락하는 롯데열차. All rights reserved.</footer>
     <script>
-      const main = () => location.replace("/");
+        const main = () => location.replace("/");
       const join = () => location.replace("/join");
       const login = () => location.replace("/login");
-      const logout = () => {
-            location.replace("/logout");
-        };
-      window.onload = () => {
+    window.onload = () => {
         const isLoggedIn = true; // 여기에 로그인 여부를 판단하는 로직을 추가하십시오.
         const loggedInUserId = "exampleUser"; // 여기에 로그인된 사용자의 아이디를 설정하십시오.
         const profileBtn = document.getElementById("profileBtn"); // "내 정보" 버튼
@@ -100,6 +56,5 @@
         // 예시: 사용자 프로필 페이지로 이동
         location.replace("/profile"); // 이동할 페이지 경로를 수정하세요.
     };
-    </script>
-  </body>
-</html>
+</script>
+</body>

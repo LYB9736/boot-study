@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class AuthController {
 
-        @GetMapping("/login")
+    @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("auth/login");
@@ -29,8 +29,15 @@ public class AuthController {
         session.invalidate();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/auth/login");
+        modelAndView.setViewName("redirect:/login");
         return modelAndView;
     }
-    
+
+    @GetMapping("/profile")
+    public ModelAndView profile() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("auth/profile");
+        return modelAndView;
+    }
+
 }

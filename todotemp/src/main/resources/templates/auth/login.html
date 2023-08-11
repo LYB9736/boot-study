@@ -115,11 +115,7 @@
       // id속성을 이용해서 태그를 가져옴
       const idElement = document.getElementById("id");
       const pwElement = document.getElementById("password");
-      const rememberMeElement = document.getElementById("rememberMe");
 
-      if (rememberMeElement.checked) {
-        localStorage.setItem("rememberId", idElement.value);
-      }
 
       const dto = {
         user: {

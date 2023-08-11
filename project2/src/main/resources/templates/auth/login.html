@@ -15,15 +15,15 @@
       /></a>
       <h1>떨어지는 것에는 날개가 없다.</h1>
       <div class="login-signup">
-        <a onclick=join()>회원가입</a>
-        <a onclick=login()>로그인</a>
+        <a onclick="join()">회원가입</a>
+        <a onclick="login()">로그인</a>
       </div>
     </header>
     <main>
-      <form action="/login" method="post">
+      <form>
         <div>
           <label for="username">아이디:</label>
-          <input type="text" id="username" name="username" required  />
+          <input type="text" id="id" name="username" required />
         </div>
         <div>
           <label for="password">비밀번호:</label>
@@ -44,17 +44,19 @@
       const join = () => location.replace("/join");
       const login = () => location.replace("/login");
 
-      const requestLogin = () => {
-        if (!validateFields()) {
+      document.querySelector("#password").addEventListener("keyup", (event) => {
+        
+        if (event.keyCode === 13) {
+          if(!validateFields()){
+            return;
+          }
+            requestLogin();
+      }
+    });
+      const requestLogin = () =>{
+        if(!validateFields()){
           return;
         }
-
-      document.querySelector("#password").addEventListener("keyup", (event) => {
-        if (event.keyCode === 13) {
-          requestLogin();
-        }
-      });
-
       
 
         const dto = {
@@ -76,8 +78,16 @@
             alert(result.message);
             if (result.code === 0) {
               location.replace("/");
+            }else if (result.code === 1){
+              idElement.focus();
+            }else if (result.code === 2){
+              pwElement.focus();
             }
+          })
+          .catch((error) => {
+            console.log(error);
           });
+        };
         // 아이디와 비밀번호 입력창이 비어있는지 검사하는 함수
         const validateFields = () => {
           // id속성으로 요소를 가져옴
@@ -95,10 +105,9 @@
             pwElement.focus();
             return false;
           }
-
           return true;
         };
-      };
+      
     </script>
   </body>
 </html>

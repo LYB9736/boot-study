@@ -46,6 +46,33 @@ main {
     padding: 20px;
 }
 
+
+.h2,
+.write-button {
+    margin: 0;
+}
+
+.write-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.write-button a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.write-button a:hover {
+    background-color: #555;
+}
+
+
 .post {
     margin-bottom: 20px;
     border: 1px solid #ccc;

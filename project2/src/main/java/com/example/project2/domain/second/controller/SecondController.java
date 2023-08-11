@@ -16,14 +16,14 @@ public class SecondController {
     @Autowired
     private SecondService secondService;
 
-    @GetMapping("/")
-    public ModelAndView mainPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<ResSecondDTO> resSecondDTOList = secondService.getSecondData();
-        modelAndView.addObject("resSecondDTOList", resSecondDTOList);
-        modelAndView.setViewName("main/main");
-        return modelAndView;
-    }
+    // @GetMapping("/")
+    // public ModelAndView mainPage() {
+    //     ModelAndView modelAndView = new ModelAndView();
+    //     List<ResSecondDTO> resSecondDTOList = secondService.getSecondData();
+    //     modelAndView.addObject("resSecondDTOList", resSecondDTOList);
+    //     modelAndView.setViewName("main/main");
+    //     return modelAndView;
+    // }
 
     @GetMapping("/board")
     public ModelAndView secondPage() {
@@ -31,6 +31,13 @@ public class SecondController {
         List<ResSecondDTO> resSecondDTOList = secondService.getSecondData();
         modelAndView.addObject("resSecondDTOList", resSecondDTOList);
         modelAndView.setViewName("board/board");
+        return modelAndView;
+    }
+
+    @GetMapping("/write")
+    public ModelAndView writePage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("board/write");
         return modelAndView;
     }
 }
