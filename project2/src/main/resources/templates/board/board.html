@@ -30,7 +30,7 @@
       <section class="recent-posts">
         <!-- 최근 포스트 목록을 보여주는 영역 -->
         <div class="write-button">
-          <a href="/write">글쓰기</a>
+          <a onclick= board()>글쓰기</a>
         </div>
         <h2>최근 포스트 목록</h2>
         <div class="post" th:each="dto : ${resSecondDTOList}">
@@ -72,46 +72,53 @@
       const logout = () => {
         location.replace("/logout");
       };
-      const isLoggedIn = false; // 로그인 상태 여부를 판단하는 변수
-
+      let isLoggedIn = false;
+      let loggedInUserId = null; // 추가: 로그인한 사용자의 ID를 저장할 변수
+    
+      window.onload = async () => {
+        try {
+          const response = await fetch("/api/v1/auth/check-login-status");
+          const data = await response.json();
+    
+          isLoggedIn = data.isLoggedIn;
+          loggedInUserId = data.userId; // 추가: 로그인한 사용자의 ID 저장
+    
+          const profileBtn = document.getElementById("profileBtn");
+          const joinBtn = document.getElementById("joinBtn");
+          const loginBtn = document.getElementById("loginBtn");
+          const logoutBtn = document.getElementById("logoutBtn");
+          const loggedInMessage = document.getElementById("loggedInMessage");
+    
+          if (isLoggedIn) {
+            profileBtn.style.display = "inline-block";
+            joinBtn.style.display = "none";
+            loginBtn.style.display = "none";
+            logoutBtn.style.display = "inline-block";
+            loggedInMessage.style.display = "inline-block";
+            loggedInMessage.innerText = `${loggedInUserId}님 안녕하세요`; // 추가: 로그인한 사용자의 ID를 표시
+          } else {
+            profileBtn.style.display = "none";
+            joinBtn.style.display = "inline-block";
+            loginBtn.style.display = "inline-block";
+            logoutBtn.style.display = "none";
+            loggedInMessage.style.display = "none";
+          }
+        } catch (error) {
+          console.error("Error checking login status:", error);
+        }
+      };
+    
       const board = () => {
         if (isLoggedIn) {
-          location.replace("/board");
+          location.replace("/write");
         } else {
-          alert("글쓰기를 하려면 로그인이 필요합니다."); // 경고창 표시
-          login(); // 로그인 페이지로 이동
+          alert("글쓰기를 하려면 로그인이 필요합니다.");
+          login();
         }
       };
-      window.onload = () => {
-        const isLoggedIn = true; // 여기에 로그인 여부를 판단하는 로직을 추가하십시오.
-        const loggedInUserId = "exampleUser"; // 여기에 로그인된 사용자의 아이디를 설정하십시오.
-        const profileBtn = document.getElementById("profileBtn"); // "내 정보" 버튼
-        const joinBtn = document.getElementById("joinBtn"); // "회원가입" 버튼
-        const loginBtn = document.getElementById("loginBtn");
-        const logoutBtn = document.getElementById("logoutBtn");
-        const loggedInMessage = document.getElementById("loggedInMessage");
-
-        if (isLoggedIn) {
-          profileBtn.style.display = "inline-block"; // 로그인한 경우 "내 정보" 버튼 표시
-          joinBtn.style.display = "none";
-          loginBtn.style.display = "none";
-          logoutBtn.style.display = "inline-block";
-          loggedInMessage.innerText = `${loggedInUserId}님 안녕하세요`;
-          loggedInMessage.style.display = "inline-block";
-        } else {
-          profileBtn.style.display = "none";
-          joinBtn.style.display = "inline-block"; // 로그아웃한 경우 "회원가입" 버튼 표시
-          loginBtn.style.display = "inline-block";
-          logoutBtn.style.display = "none";
-          loggedInMessage.style.display = "none";
-        }
-      };
-
-      // const board = () => location.replace("/board");
+    
       const viewProfile = () => {
-        // "내 정보" 버튼 클릭 시 동작 추가
-        // 예시: 사용자 프로필 페이지로 이동
-        location.replace("/profile"); // 이동할 페이지 경로를 수정하세요.
+        location.replace("/profile");
       };
     </script>
   </body>

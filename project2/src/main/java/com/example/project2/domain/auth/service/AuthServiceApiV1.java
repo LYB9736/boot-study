@@ -26,7 +26,7 @@ public class AuthServiceApiV1 {
 
     private final UserRepository userRepository;
 
-    public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session){
+    public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session) {
         Optional<UserEntity> userEntityOptional = userRepository.findByIdAndDeleteDateIsNull(dto.getUser().getId());
 
         if (userEntityOptional.isEmpty()) {
@@ -46,8 +46,7 @@ public class AuthServiceApiV1 {
                         .code(0)
                         .message("로그인에 성공하였습니다.")
                         .build(),
-                HttpStatus.OK
-        );
+                HttpStatus.OK);
 
     }
 
@@ -73,9 +72,12 @@ public class AuthServiceApiV1 {
                         .code(0)
                         .message("회원가입에 성공하였습니다.")
                         .build(),
-                HttpStatus.OK
-        );
+                HttpStatus.OK);
     }
 
+    public boolean isLoggedIn(HttpSession session) {
+        LoginUserDTO loginUserDTO = (LoginUserDTO) session.getAttribute("loginUserDTO");
+        return loginUserDTO != null;
+    }
 
 }

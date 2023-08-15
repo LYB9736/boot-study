@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>커뮤니티사이트 메인페이지</title>
     <!-- CSS와 JavaScript 파일 링크 등의 필요한 메타 정보들을 포함 -->
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
     <header>
-        <!-- 로고, 메뉴, 로그인/회원가입/로그아웃 버튼 등의 네비게이션 영역 -->
-        <a onclick="main()">
-            <img src="images/logo.jpg" alt="logo" width="200" height="100" />
-        </a>
-        <h1>떨어지는 것에는 날개가 없다.</h1>
-        <div class="login-signup">
-          <a id="profileBtn" style="display: none;" onclick="viewProfile()">내 정보</a>
-          <a id="joinBtn" style="display: none;" onclick="join()">회원가입</a>
-          <a id="loginBtn" onclick="login()">로그인</a>
-          <a id="logoutBtn" onclick="logout()" style="display: none;">로그아웃</a>
-          <span id="loggedInMessage" style="display: none;"></span>
+      <!-- 로고, 메뉴, 로그인/회원가입/로그아웃 버튼 등의 네비게이션 영역 -->
+      <a onclick="main()">
+        <img src="images/logo.jpg" alt="logo" width="200" height="100" />
+      </a>
+      <h1>떨어지는 것에는 날개가 없다.</h1>
+      <div class="login-signup">
+        <a id="profileBtn" style="display: none" onclick="viewProfile()"
+          >내 정보</a
+        >
+        <a id="joinBtn" style="display: none" onclick="join()">회원가입</a>
+        <a id="loginBtn" onclick="login()">로그인</a>
+        <a id="logoutBtn" onclick="logout()" style="display: none">로그아웃</a>
+        <span id="loggedInMessage" style="display: none"></span>
+      </div>
     </header>
     <script>
-        const main = () => location.replace("/");
+      const main = () => location.replace("/");
       const join = () => location.replace("/join");
       const login = () => location.replace("/login");
-    window.onload = () => {
-        const isLoggedIn = true; // 여기에 로그인 여부를 판단하는 로직을 추가하십시오.
-        const loggedInUserId = "exampleUser"; // 여기에 로그인된 사용자의 아이디를 설정하십시오.
-        const profileBtn = document.getElementById("profileBtn"); // "내 정보" 버튼
-        const joinBtn = document.getElementById("joinBtn"); // "회원가입" 버튼
-        const loginBtn = document.getElementById("loginBtn");
-        const logoutBtn = document.getElementById("logoutBtn");
-        const loggedInMessage = document.getElementById("loggedInMessage");
+      const logout = () => {
+        location.replace("/logout");
+      };
+      let isLoggedIn = false;
+      let loggedInUserId = null; // 추가: 로그인한 사용자의 ID를 저장할 변수
 
-        if (isLoggedIn) {
-            profileBtn.style.display = "inline-block"; // 로그인한 경우 "내 정보" 버튼 표시
+      window.onload = async () => {
+        try {
+          const response = await fetch("/api/v1/auth/check-login-status");
+          const data = await response.json();
+
+          isLoggedIn = data.isLoggedIn;
+          loggedInUserId = data.userId; // 추가: 로그인한 사용자의 ID 저장
+
+          const profileBtn = document.getElementById("profileBtn");
+          const joinBtn = document.getElementById("joinBtn");
+          const loginBtn = document.getElementById("loginBtn");
+          const logoutBtn = document.getElementById("logoutBtn");
+          const loggedInMessage = document.getElementById("loggedInMessage");
+
+          if (isLoggedIn) {
+            profileBtn.style.display = "inline-block";
             joinBtn.style.display = "none";
             loginBtn.style.display = "none";
             logoutBtn.style.display = "inline-block";
-            loggedInMessage.innerText = `${loggedInUserId}님 안녕하세요`;
             loggedInMessage.style.display = "inline-block";
-        } else {
+            loggedInMessage.innerText = `${loggedInUserId}님 안녕하세요`; // 추가: 로그인한 사용자의 ID를 표시
+          } else {
             profileBtn.style.display = "none";
-            joinBtn.style.display = "inline-block"; // 로그아웃한 경우 "회원가입" 버튼 표시
+            joinBtn.style.display = "inline-block";
             loginBtn.style.display = "inline-block";
             logoutBtn.style.display = "none";
             loggedInMessage.style.display = "none";
+          }
+        } catch (error) {
+          console.error("Error checking login status:", error);
         }
-    };
-
-    const board = () => location.replace("/board");
-    const viewProfile = () => {
+      };
+      const board = () => location.replace("/board");
+      const viewProfile = () => {
         // "내 정보" 버튼 클릭 시 동작 추가
         // 예시: 사용자 프로필 페이지로 이동
         location.replace("/profile"); // 이동할 페이지 경로를 수정하세요.
-    };
-</script>
-</body>
+      };
+    </script>
+  </body>
+</html>
