@@ -70,8 +70,8 @@
         <label for="content">내용</label>
         <textarea id="content" name="content" rows="6" required></textarea
         ><br />
-        <input type="hidden" id="userIdx" name="userIdx" value="1" />
-        <input type="submit" onclick=submitPost() value="작성하기" />
+
+        <input type="submit" onclick="submitPost()" value="작성하기" />
       </form>
     </main>
     <script>
@@ -116,6 +116,7 @@
           console.error("Error checking login status:", error);
         }
       };
+
       const board = () => location.replace("/board");
       const viewProfile = () => {
         // "내 정보" 버튼 클릭 시 동작 추가
@@ -123,35 +124,48 @@
         location.replace("/profile"); // 이동할 페이지 경로를 수정하세요.
       };
 
-      const submitPost = () => {
+      const submitPost = async () => {
         const title = document.getElementById("title").value;
         const content = document.getElementById("content").value;
 
-        // 작성한 글 내용을 서버로 전송하고 업로드하는 로직 추가
-        const postDTO = {
-          title: title,
-          content: content,
-        };
+        try {
+          // Fetch user's login status and ID
+          const response = await fetch("/api/v1/auth/check-login-status");
+          const data = await response.json();
 
-        fetch("/api/v1/board/write", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify(postDTO),
-        })
-          .then((response) => response.json())
-          .then((result) => {
+          if (data.isLoggedIn) {
+            const userIdx = data.userId;
+
+            const postDTO = {
+              title: title,
+              content: content,
+              userIdx: userIdx, // user_idx 값을 포함시킴
+            };
+
+            // Send postDTO to the server
+            const postResponse = await fetch("/api/v1/board/write", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8",
+              },
+              body: JSON.stringify(postDTO),
+            });
+
+            const result = await postResponse.json();
+
             if (result.success) {
               alert("글이 업로드되었습니다.");
               location.replace("/board");
             } else {
               alert("글 업로드에 실패했습니다.");
             }
-          })
-          .catch((error) => {
-            console.error("Error uploading post:", error);
-          });
+          } else {
+            alert("글쓰기를 하려면 로그인이 필요합니다.");
+            // Implement your own login function here
+          }
+        } catch (error) {
+          console.error("Error submitting post:", error);
+        }
       };
     </script>
   </body>
