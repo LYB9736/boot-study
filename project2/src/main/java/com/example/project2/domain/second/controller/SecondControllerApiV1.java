@@ -50,6 +50,7 @@ public class SecondControllerApiV1 {
         return PostEntity.builder()
             .title(resSecondDTO.getTitle())
             .content(resSecondDTO.getContent())
+            .idx(resSecondDTO.getUserIdx())
             .createDate(LocalDateTime.now())
             // 다른 필요한 정보들도 설정
             .build();
